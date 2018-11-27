@@ -1,0 +1,75 @@
+package Model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Order implements Serializable{
+	private int orderId;
+	private String customerId;
+	private String itemId;
+	private Date orderDate;
+	private int quantity;
+	private String status;
+	
+	private Order() {
+	}
+
+	public Order(int orderId, String customerId, String itemId, Date orderDate, int quantity, String status) {
+		super();
+		this.orderId = orderId;
+		this.customerId = customerId;
+		this.itemId = itemId;
+		this.orderDate = orderDate;
+		this.quantity = quantity;
+		this.status = status;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+}
