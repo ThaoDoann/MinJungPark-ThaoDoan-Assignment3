@@ -50,5 +50,6 @@ public class ConnectionFactory {
 	                    rs.close();
 	    }
 	
+	    // Test by MJ
 
 }
