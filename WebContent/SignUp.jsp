@@ -69,7 +69,7 @@
   <div class="container" >
     <div class="jumbotron">
       <form class="form-signin" action="Controller" Method= "POST">
-        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-edit"></span>ㅤCustomer Registration</h2><br>
+        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Customer Registration</h2><br>
         <h5>Please fill in this form to create an account.</h5>
         <!-- username -->
         <div class="input-group" style="margin-bottom:6px">

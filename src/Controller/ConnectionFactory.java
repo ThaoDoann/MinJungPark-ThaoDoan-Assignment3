@@ -10,7 +10,7 @@ public class ConnectionFactory {
 		
 		private static final String url="jdbc:mysql://localhost:3306/MVCDB";
 	    private static final String user="root";
-	    private static final String password="root";
+	    private static final String password="10311031";
 
 	    private ConnectionFactory() {
 			try {
