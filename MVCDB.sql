@@ -44,8 +44,11 @@ CREATE TABLE IF NOT EXISTS Orders (
 	FOREIGN KEY (itemId) 			REFERENCES Shoes(itemId)
 );
 
+-- Insert into orders (customerID, itemId, orderDate, quantity, status) values
+-- (1, 2, CURDATE(), 1, 'Order Place');
 
-
+Insert into Order (customerId, itemId, orderDate, quantity, status) values 
+(2, 2, 2, curDate(), 5, 'Completed' );
 
 select * from Customers;
 select * from CSR;
