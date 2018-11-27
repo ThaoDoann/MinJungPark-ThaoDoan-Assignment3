@@ -186,7 +186,7 @@
 	Connection connection = ConnectionFactory.getConnection();
 	ResultSet rs = null;
 	Statement st = connection.createStatement();
-	rs = st.executeQuery("Select * from Shoes Where category = 'Man shoes'");
+	rs = st.executeQuery("Select * from Shoes Where category = 'Man'");
 	
 	ArrayList<Shoe> manShoeList = new ArrayList<Shoe>();
 	while(rs.next()){

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import  = "java.sql.*, Controller.ConnectionFactory, java.util.*, Model.Order, Model.Shoe" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+   %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +69,7 @@
     </div>
   </nav>
 
+<!--  
   <form method ="POST" action = "ShoppingController">
   <div class="container">
     <div class="jumbotron">
@@ -134,6 +138,103 @@
         <hr style="border:solid 1px lightGray">
         <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Net Price: $100.00</p>
       </div>
+      <div style="text-align:center;">
+      	<button style="width:140px" class="btn btn-md btn-primary" type="submit" name = "action" value = "deleteCart">DELETE</button>
+      	<button style="width:140px" class="btn btn-md btn-primary" type="submit" name = "action" value = "editCart"  >SAVE CHANGES</button>
+        <button style="width:140Px" class="btn btn-md btn-primary" type="submit" name = "action" value = "payCart"   >CHECK OUT</button>
+      </div>
+    </div>
+    <br><br>
+  </div>
+  </form>
+  -->
+   
+<% 
+	Connection connection = ConnectionFactory.getConnection();
+	ResultSet rs = null;
+	PreparedStatement pst = null;
+	Statement st = connection.createStatement();
+	rs = st.executeQuery("Select * from Orders");
+	double netPrice =0;
+	ArrayList<Order> orderList = new ArrayList<Order>();
+	while(rs.next()){
+		orderList.add(new Order (rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
+	}
+
+%>
+ 
+ <form method ="POST" action = "ShoppingController">
+  <div class="container">
+    <div class="jumbotron">
+      <h2><span class="glyphicon glyphicon-shopping-cart"></span>   My Shopping Cart</h2>
+      <div class="well" style="background-color:white">
+        <table class="table table-hover" style="text-align:center">
+          <thead>
+            <tr>
+              <th></th>
+              <th style="text-align:center">Name</th>
+              <th style="text-align:center">Category</th>
+              <th style="text-align:center">Size</th>
+              <th style="text-align:center">Unit Price</th>
+              <th style="text-align:center">Quantity</th>
+              <th style="text-align:center">Tax</th>
+              <th style="text-align:center">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+         <% 
+          for(int i =0; i < orderList.size(); i++  ){  
+	          rs = st.executeQuery("Select * from Shoes where itemId = "+orderList.get(i).getItemId());	
+				if (rs.next()){
+					Shoe itemOrdered = new Shoe(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5));	
+						%>
+        	  <tr>
+              <td>
+                  <input type="checkbox" name = "order" value = <%=orderList.get(i).getOrderId() %>>
+              </td>
+              <td><% 
+              out.println(itemOrdered.getItemName());
+               %></td>
+              <td><% out.println(itemOrdered.getCategory()); %></td>
+              <td>
+                  <select class="form-control"  style="width:80px; height:27px;font-size:13px;margin:auto">
+                  	<% 
+                  //	ResultSet rs1 = connection.createStatement().executeQuery("Select shoeSize from Shoes where itemName = "+itemOrdered.getItemName()+"  And category ="+itemOrdered.getCategory());
+                  	//	System.out.println(rs1);
+                  	%>
+                    <option>7</option>
+                    <option>7.5</option>
+                    <option>8</option>
+                    <option>8.5</option>
+                  </select>
+              </td>
+              <td>$<%=itemOrdered.getPrice()%></td>
+              <td>
+              	
+                  <input type="number" class="form-control" min="1" max="10" step="1" value= '<% out.println(orderList.get(i).getQuantity()); %>'style="width:80px; height:25px;margin:auto">
+
+              </td>
+              <td>13%</td>
+              <td><%
+		            double total = orderList.get(i).getQuantity() * itemOrdered.getPrice() *(1-0.13);
+		             netPrice += total;
+		            String totalAmount = String.format ("$%.2f",total);
+	              	out.println(totalAmount); %></td>
+            </tr>
+        		
+         <% } }%> 
+          
+            
+			
+
+
+          </tbody>
+        </table>
+        <hr style="border:solid 1px lightGray">
+        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Net Price: $<%=netPrice %></p>
+      </div>
+      
+      
       <div style="text-align:center;">
       	<button style="width:140px" class="btn btn-md btn-primary" type="submit" name = "action" value = "deleteCart">DELETE</button>
       	<button style="width:140px" class="btn btn-md btn-primary" type="submit" name = "action" value = "editCart"  >SAVE CHANGES</button>

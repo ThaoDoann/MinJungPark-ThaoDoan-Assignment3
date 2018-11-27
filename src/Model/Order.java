@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class Order implements Serializable{
 	private int orderId;
-	private String customerId;
-	private String itemId;
+	private int customerId;
+	private int itemId;
 	private Date orderDate;
 	private int quantity;
 	private String status;
@@ -14,7 +14,7 @@ public class Order implements Serializable{
 	private Order() {
 	}
 
-	public Order(int orderId, String customerId, String itemId, Date orderDate, int quantity, String status) {
+	public Order(int orderId, int customerId, int itemId, Date orderDate, int quantity, String status) {
 		super();
 		this.orderId = orderId;
 		this.customerId = customerId;
@@ -32,19 +32,19 @@ public class Order implements Serializable{
 		this.orderId = orderId;
 	}
 
-	public String getCustomerId() {
+	public int getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(String customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
-	public String getItemId() {
+	public int getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(String itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 

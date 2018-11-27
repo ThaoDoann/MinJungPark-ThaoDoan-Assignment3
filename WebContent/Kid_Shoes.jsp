@@ -63,6 +63,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
         <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+        <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li> dislay: block
+        <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
         <li><a href="Cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">5</span></a></li>
       </ul>
     </div>
@@ -187,7 +189,7 @@
 	Connection connection = ConnectionFactory.getConnection();
 	ResultSet rs = null;
 	Statement st = connection.createStatement();
-	rs = st.executeQuery("Select * from Shoes Where category = 'Kid shoes'");
+	rs = st.executeQuery("Select * from Shoes Where category = 'Kid'");
 	
 	ArrayList<Shoe> kidShoeList = new ArrayList<Shoe>();
 	while(rs.next()){
