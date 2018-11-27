@@ -45,8 +45,6 @@ public class LogInController extends HttpServlet {
 		
 			if("SignIn".equals(action)) {
 				validateLogin(request, response);
-			}else if ("SignUp".equals(action)) {
-				registration (request, response);
 			}
 		}catch (Exception ex) {
 			ex.printStackTrace();
@@ -98,60 +96,6 @@ public class LogInController extends HttpServlet {
 		}
 	}
 		
-	public void registration (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-			String userName = request.getParameter("regUser");
-			String password = request.getParameter("regPassword");
-			String firstname = request.getParameter("fName");
-			String lastname = request.getParameter("lName");
-			String address = request.getParameter("address");
-			String city = request.getParameter("city");
-			String postalCode = request.getParameter("postalCode");
-			System.out.println(1);	
-			con = ConnectionFactory.getConnection();
-			System.out.println(2);
-			//check if there is an userName exist
-			String query = "Select * from Customers where userName = ?";
-			System.out.println(3);
-			pst = con.prepareStatement(query);
-			System.out.println(4);
-			pst.setString(1, userName);
-			System.out.println(pst);
-			rs = pst.executeQuery();
-					
-			if(rs.next()) {
-				session.setAttribute("invalidUserName", "This user name is already used");
-				response.sendRedirect("SignUp.jsp");
-			} else {
-				String insertquery = "Insert into Customers "
-						+ "(userName, password, firstName, lastName, address, city, postalCode)"
-						+ "values (?, ?, ?, ?, ?, ?, ?)";
-				pst = con.prepareStatement(insertquery);
-				pst.setString(1, userName);   						pst.setString(2 , password);
-				pst.setString(3 , firstname);						pst.setString(4 , lastname );
-				pst.setString(5 , address);							pst.setString(6 , city);
-				pst.setString(7 , postalCode);
-				System.out.println(pst);
-				int addCustomer = pst.executeUpdate();
-				if(addCustomer > 0 ) {
-					Customer newCustomer = new Customer();
-					newCustomer.setFirstName(firstname);
-					newCustomer.setLastName(lastname);
-					
-					session.setAttribute("userName", newCustomer);
-					session.setAttribute("status", "LoggedIn");
-					response.sendRedirect("Women_Shoes.jsp");
-				}
-				
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			ConnectionFactory.closeConnection(con, pst, null);
-		}
-	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

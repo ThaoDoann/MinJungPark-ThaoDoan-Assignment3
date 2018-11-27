@@ -1,6 +1,7 @@
 package Controller;
 /**
  * Student Name: Doan Ngoc Phuong Thao - 991466176
+ * Student Name: Min Jung Park - 991495289
  */
 
 import java.sql.*;
