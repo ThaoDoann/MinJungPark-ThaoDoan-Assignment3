@@ -63,8 +63,6 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
         <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
-        <li><a href="SignUp.jsp"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li> dislay: block
-        <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
         <li><a href="Cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">5</span></a></li>
       </ul>
     </div>
@@ -193,20 +191,23 @@
 	
 	ArrayList<Shoe> kidShoeList = new ArrayList<Shoe>();
 	while(rs.next()){
-		kidShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5)));
+		kidShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+				rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
 	}
 	request.setAttribute("kidShoeList", kidShoeList);
   %>
   <form method = "POST" action ="ShoeController">
   	 <div class="container" >
+  	 
 		<c:forEach var = "shoe"  items="${kidShoeList}">
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading" style="text-align:center;font-weight: bold">${shoe.itemName}</div>
-          <div class="panel-body"><img src=".\images\Kid_Shoes\01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
+          <div class="panel-body"><img src='${shoe.image}' class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
           <div class="panel-footer">
-            Sole: Rubber<br>
-            Velcro<br>
+            <div class = "itemDescription">
+	            ${shoe.description}
+	        </div>
             Price <b>$${shoe.price}</b><br><br>
             <div class="container">
             	<select name = "WomanShoeSize">
