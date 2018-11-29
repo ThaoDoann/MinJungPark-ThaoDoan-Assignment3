@@ -65,11 +65,11 @@ select count(*) from shoes where category = 'Woman';
 delete from shoes where itemId IN (1, 2, 3, 4, 5, 6, 7, 8);
 
 insert into orders (customerId, itemId, orderDate, quantity, status) values
-(2,11, Curdate(), 1, 'Completed')
- Select * from Shoes Where category = 'Kid'
+(2,11, Curdate(), 1, 'Completed');
+
  
-update shoes 
-Update Orders set quantity = 2, status = "Order-Place" where orderId = 1
+
+ 
  
 select * from Customers;
 select * from CSR;

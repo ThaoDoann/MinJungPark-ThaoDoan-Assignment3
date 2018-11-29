@@ -37,10 +37,11 @@ public class ShoppingController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+			System.out.println("ShoppingController");
 			session = request.getSession();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			System.out.println(0);
+			
 			String action = request.getParameter("action");
 		
 			if("deleteCart".equals(action)) {

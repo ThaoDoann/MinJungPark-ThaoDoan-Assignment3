@@ -61,57 +61,55 @@
     </div>
   </nav>
 
-<form action = "ShoeController" method ="POST">
+<form action = "ProductController" method ="POST">
   <div class="container" >
     <div class="jumbotron">
-      <form class="form-signin" action="Controller" Method= "POST">
-        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-pencil">    </span>New Item</h2><br>
+        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-pencil">    </span>   New Item</h2><br>
         <h5>Please fill the new shoe information.</h5>
         <!-- itemName -->
         <div class="input-group" style="margin-bottom:6px">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input type="text" class="form-control" name="addItemName" placeholder="Item Name" required><br>
+          <input type="text"  name="addItemName" class="form-control"  placeholder="Item Name" required><br>
         </div>
         <!-- category -->
         <div class="input-group" style="margin-bottom:6px">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <input type="password" class="form-control" name="regPassword" placeholder="Password" required><br>
+          <input type="password"  name="addCategory"class="form-control"  placeholder="Catefory" required><br>
         </div>
         <!-- size -->
-        <div class="input-group" style="margin-bottom:6px; width:49.5%; float:left">
+        <div class="input-group" style="margin-bottom:6px; width:33%; float:left">
           <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-          <input type="text" class="form-control" name="fName" placeholder="First Name" required>
+          <input type="number"  name="addItemSize" class="form-control" placeholder="Size" required>
         </div>
         <!-- price -->
-        <div class="input-group" style="margin-bottom:6px; width:49.5%; float:right">
+        <div class="input-group" style="margin-bottom:6px; width:33%; float:right">
           <span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-          <input type="text" class="form-control" name="lName" placeholder="Last Name" required><br>
+          <input type="number"  name="addPrice" class="form-control"  placeholder="Price" required><br>
         </div>
         <!-- quantity -->
-        <div class="input-group" style="margin-bottom:6px">
+        <div class="input-group" style="margin-bottom:6px; width:33%;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-          <input type="text" class="form-control" name="address" placeholder="Address" required><br>
-        </div>
-        <!-- image -->
-        <div class="input-group" style="margin-bottom:6px; width:49.5%; float:left">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-          <input type="text" class="form-control" name="city" placeholder="City" required><br>
+          <input type="number"  name="addQty" class="form-control" placeholder="Quantity" required><br>
         </div>
         <!-- description -->
-        <div class="input-group" style="margin-bottom:6px; width:49.5%; float:right">
+        <div class="input-group" style="margin-bottom:6px;  float:left">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-          <input type="text" class="form-control" name="postalCode" placeholder="Postal Code" required><br>
+          <input type="text"  name="adddescription" class="form-control"  placeholder="Description" required><br>
+        </div><br><br>
+        
+        <div class="panel-body">
+        	<img src="images/Women_Shoes/01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image" name ="addImage" >
+        	<button class="btn btn-md btn-primary" type="submit" name ="action" value="addItemImg"  style="width:140px">Add Item Image</button>
         </div>
-        <br><br><br><br>
-        <div style="text-align:center;">
-          <button class="btn btn-md btn-primary" type="submit"   style="width:140px">ADD</button>
-          <button class="btn btn-md btn-primary" type="submit"   style="width:140px">CANCEL</button>
+        
+        <br><br><br><br> <div style="text-align:center;">,./ <button class="btn btn-md btn-primary" type="submit" name='action' value="addItem"  style="width:140px">ADD ITEM</button>rrl
+          <button class="btn btn-md btn-primary" type="submit" name ="action" value="cancelAdd"  style="width:140px">CANCEL</button>
+    
         </div>
-      </form>
+      
     </div>
-    <br>
   </div>
-  <br>
+
   </form>
 
 

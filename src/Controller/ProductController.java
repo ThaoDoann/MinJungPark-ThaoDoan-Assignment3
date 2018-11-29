@@ -35,6 +35,7 @@ public class ProductController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+			System.out.println("ProductController");
 			session = request.getSession();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();

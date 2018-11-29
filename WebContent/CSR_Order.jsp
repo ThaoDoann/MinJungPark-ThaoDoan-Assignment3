@@ -268,7 +268,6 @@
                    		<option value = "Completed">Arrived</option>
                    	<%}%>
                   </select>
-        
               </td>
             </tr>
             <%} %>
@@ -283,6 +282,7 @@
         <button style="width:80px" class="btn btn-md btn-primary" type="submit" name= "action" value="editOrder">SAVE</button>
       </div>
       </form>
+      
     </div>   
     <br><br>
   </div>
