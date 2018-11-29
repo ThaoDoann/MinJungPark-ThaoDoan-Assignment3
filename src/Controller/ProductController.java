@@ -45,11 +45,13 @@ public class ProductController extends HttpServlet {
 			String action = request.getParameter("action");
 		
 			if("addProduct".equals(action)) {
-				System.out.println("delete");
+				System.out.println("add button");
 			}else if ("editProduct".equals(action)) {
 				System.out.println("edit");
 			}else if ("deleteProduct".equals(action)) {
 				deleteProduct(request, response);
+			}else if ("addItem".equals(action)) {
+				System.out.println("add product");
 			}
 		}catch (Exception ex) {
 			ex.printStackTrace();
@@ -80,6 +82,27 @@ public class ProductController extends HttpServlet {
 			ConnectionFactory.closeConnection(con, pst, null);
 		}
 	}
+	
+	
+	public void addItem (HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			con = ConnectionFactory.getConnection();
+			pst = con.prepareStatement("insert into Shoes (itemName, category, shoeSize, price, quantity, image, description) "
+					+ "values ('Shoe 1', 'Kid', 5, 52.32, 1,'images/Kid_Shoes/05-01.png', 'nice pink shoe'))";
+			pst.setInt(1, );			
+			
+	
+			RequestDispatcher rd=request.getRequestDispatcher(".jsp");  
+			rd.forward(request, response);
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionFactory.closeConnection(con, pst, null);
+		}
+	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

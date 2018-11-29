@@ -69,7 +69,6 @@
   </nav>
 
 	<% 
-	
 		String userName = request.getParameter("userName");
 	
 		Connection con = null;

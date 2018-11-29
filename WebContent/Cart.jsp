@@ -193,10 +193,14 @@
               <td>
                   <input type="checkbox" name = "order" value = <%=orderList.get(i).getOrderId()%>>
               </td>
-              <td><%   out.println(itemOrdered.getItemName()); %></td>
+              <td><% 
+              out.println(itemOrdered.getItemName());
+               %></td>
               <td><% out.println(itemOrdered.getCategory()); %></td>
               <td>
                   <select class="form-control"  style="width:80px; height:27px;font-size:13px;margin:auto">
+                  	<% 
+                  	%>
                     <option>7</option>
                     <option>7.5</option>
                     <option>8</option>
@@ -205,16 +209,19 @@
               </td>
               <td>$<%=itemOrdered.getPrice()%></td>
               <td>
-                  <input type="number" class="form-control" name = "itemOrderedQty" value=<%=orderList.get(i).getQuantity()%>  style="width:80px; height:25px;margin:auto">
+                  <input type="number" class="form-control" min="1" max="10" step="1" value=<%=orderList.get(i).getQuantity()%>  style="width:80px; height:25px;margin:auto">
+
               </td>
               <td>13%</td>
+              
               <td><%
+              
 		            double total = orderList.get(i).getQuantity() * itemOrdered.getPrice() *(1-0.13);
 		             netPrice += total;
 		            String totalAmount = String.format ("$%.2f",total);
 	              	out.println(totalAmount); %></td>
             </tr>
- 		
+        		
          <% } }%> 
           
           </tbody>

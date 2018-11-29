@@ -102,9 +102,10 @@
         	<button class="btn btn-md btn-primary" type="submit" name ="action" value="addItemImg"  style="width:140px">Add Item Image</button>
         </div>
         
-        <br><br><br><br> <div style="text-align:center;">,./ <button class="btn btn-md btn-primary" type="submit" name='action' value="addItem"  style="width:140px">ADD ITEM</button>rrl
-          <button class="btn btn-md btn-primary" type="submit" name ="action" value="cancelAdd"  style="width:140px">CANCEL</button>
-    
+        <br><br><br><br>
+         <div style="text-align:center;"> 
+         	<button class="btn btn-md btn-primary" type="submit" name='action' value="addItem"  style="width:140px">ADD</button>
+         	<button class="btn btn-md btn-primary" type="submit" name ="action" value="cancelAdd"  style="width:140px">CANCEL</button>
         </div>
       
     </div>
