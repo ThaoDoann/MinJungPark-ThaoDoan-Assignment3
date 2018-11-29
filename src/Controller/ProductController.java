@@ -39,9 +39,6 @@ public class ProductController extends HttpServlet {
 			session = request.getSession();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-
-
-			
 			String action = request.getParameter("action");
 		
 			if("addProduct".equals(action)) {
@@ -87,12 +84,28 @@ public class ProductController extends HttpServlet {
 	public void addItem (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			con = ConnectionFactory.getConnection();
-			pst = con.prepareStatement("insert into Shoes (itemName, category, shoeSize, price, quantity, image, description) "
-					+ "values ('Shoe 1', 'Kid', 5, 52.32, 1,'images/Kid_Shoes/05-01.png', 'nice pink shoe'))";
-			pst.setInt(1, );			
+			String itemName = request.getParameter("addItemName");
+			String category = request.getParameter("addCategory");
+			int shoeSize = Integer.parseInt(request.getParameter("addItemSize"));
+			double price = Double.parseDouble(request.getParameter("addPrice"));
+			int quantity = Integer.parseInt(request.getParameter("addQty"));
+			String description = request.getParameter("addDescription");
 			
-	
-			RequestDispatcher rd=request.getRequestDispatcher(".jsp");  
+			pst = con.prepareStatement("insert into Shoes (itemName, category, shoeSize, price, quantity, image, description) "
+					+ "values (?, ?, ?, ?, ?,?, ?)");
+			pst.setString(1,itemName );
+			pst.setString(2, category);
+			pst.setInt(3, shoeSize);
+			pst.setDouble(4, price);
+			pst.setInt(5, quantity);
+			pst.setString(6, "images/Women_Shoes/05-01.png");
+			pst.setString(6, description);
+			System.out.println(pst);
+			
+			int newItem = pst.executeUpdate();
+			
+			System.out.println(newItem +" have been added ");
+			RequestDispatcher rd=request.getRequestDispatcher("CSR_Product.jsp");  
 			rd.forward(request, response);
 			
 		}

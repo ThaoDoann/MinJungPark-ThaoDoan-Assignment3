@@ -1,9 +1,22 @@
 package Model;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
+import Controller.ConnectionFactory;
+
 public class Order implements Serializable{
+	Connection connection = null;
+	PreparedStatement pst;
+	ResultSet rs = null;
+	Statement st; 
+	ArrayList<Order> orderList = new ArrayList<Order>();
+	
 	private int orderId;
 	private int customerId;
 	private int itemId;
@@ -11,7 +24,7 @@ public class Order implements Serializable{
 	private int quantity;
 	private String status;
 	
-	private Order() {
+	public Order() {
 	}
 
 	public Order(int orderId, int customerId, int itemId, Date orderDate, int quantity, String status) {
@@ -70,6 +83,25 @@ public class Order implements Serializable{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public ArrayList<Order> getOderList () throws Exception {
+		try {
+			connection = ConnectionFactory.getConnection();
+			st = connection.createStatement();
+			rs = st.executeQuery("Select * from Orders");
+			
+			while(rs.next()){
+				orderList.add(new Order (rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionFactory.closeConnection(connection, pst, null);
+		}
+		return orderList;
+		
 	}
 	
 }

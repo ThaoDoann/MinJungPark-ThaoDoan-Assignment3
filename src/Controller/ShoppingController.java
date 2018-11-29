@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import Model.Order;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +39,6 @@ public class ShoppingController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
-			System.out.println("ShoppingController");
 			session = request.getSession();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -51,7 +52,6 @@ public class ShoppingController extends HttpServlet {
 			}else if ("payCart".equals(action)) {
 				payCart(request, response);
 			}else if ("editOrder".equals(action)) {
-				System.out.println(1);
 				editOrder(request, response);
 			}
 		}catch (Exception ex) {
@@ -63,8 +63,11 @@ public class ShoppingController extends HttpServlet {
 	
 	public void deleteCart (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
+			Order order = new Order();
 			con = ConnectionFactory.getConnection();
 			String orderId [] = request.getParameterValues("order");
+			
+			
 			if (orderId != null) {
 				for (int i= 0; i< orderId.length; i++) {
 					pst = con.prepareStatement("Delete from orders where orderId = ?");
@@ -92,18 +95,18 @@ public class ShoppingController extends HttpServlet {
 			String orderId [] = request.getParameterValues("order");
 			
 			if (orderId != null) {
-				for (int i= 0; i< orderId.length; i++) {
+//				for (int i= 0; i< orderId.length; i++) {
 //					int quantity = request.getParameterValue
 //					rs = pst.executeStatement
 //					pst = con.prepareStatement("Update Orders set quantity = ? where orderId = ?");
 //					pst.setInt(1, );
-//					pst.setInt(2, Integer.parseInt(orderId[i]));	
+		//			pst.setInt(2, Integer.parseInt(orderId[i]));	
 					int editedItems = pst.executeUpdate();
 					if(editedItems > 0 ) {
 						System.out.println("Number of cart have been edited :" + editedItems);      
 					}
-				}
 			}
+			
 			RequestDispatcher rd=request.getRequestDispatcher("Cart.jsp");  
 			rd.forward(request, response);
 		}
@@ -136,12 +139,24 @@ public class ShoppingController extends HttpServlet {
 	
 	public void editOrder (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
+			Order order = new Order();
+			ArrayList<Order> orderList = order.getOderList();
+			
+			String status []= request.getParameterValues("status");
+			
 			con = ConnectionFactory.getConnection();
 			st = con.createStatement();
-			rs = st.executeQuery("Select orderId from Orders");
-			
-			//
-			
+			for(int i=0; i< status.length; i++) {
+				int orderId = orderList.get(i).getOrderId();
+				pst = con.prepareStatement("Update Orders set status = ? where orderId = ?");
+				pst.setString(1, status[i]);
+				pst.setInt(2, orderId);
+				System.out.println(pst);
+				
+				pst.executeUpdate();
+			}
+			RequestDispatcher rd=request.getRequestDispatcher("CSR_Order.jsp");  
+			rd.forward(request, response);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

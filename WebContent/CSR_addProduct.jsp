@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%><!DOCTYPE html>
+    pageEncoding="ISO-8859-1"%><!DOCTYPE html
+    IMPORT ="Model.Shoe">
 <html lang="en">
 <head>
   <title>THAM</title>
@@ -74,7 +75,12 @@
         <!-- category -->
         <div class="input-group" style="margin-bottom:6px">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <input type="password"  name="addCategory"class="form-control"  placeholder="Catefory" required><br>
+          <select class="form-control"  name="addCategory" required>
+			  <option value="" disabled >Category</option>
+			  <option value="Kid">Kid</option>
+			  <option value="Woman">Woman</option>
+			  <option value="Man">Man</option>
+		  </select><br>
         </div>
         <!-- size -->
         <div class="input-group" style="margin-bottom:6px; width:33%; float:left">
@@ -89,12 +95,12 @@
         <!-- quantity -->
         <div class="input-group" style="margin-bottom:6px; width:33%;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-          <input type="number"  name="addQty" class="form-control" placeholder="Quantity" required><br>
+          <input type="number"  name="addwQty" class="form-control" placeholder="Quantity" required><br>
         </div>
         <!-- description -->
         <div class="input-group" style="margin-bottom:6px;  float:left">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-          <input type="text"  name="adddescription" class="form-control"  placeholder="Description" required><br>
+          <input type="text"  name="addDescription" class="form-control"  placeholder="Description" required><br>
         </div><br><br>
         
         <div class="panel-body">

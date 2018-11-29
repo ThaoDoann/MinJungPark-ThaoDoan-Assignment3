@@ -64,124 +64,8 @@
       </div>
     </div>
   </nav>
+ 
 
-<!-- 
-  <div class="container">
-    <div class="jumbotron">
-      <div>
-        <h2><span class="glyphicon glyphicon-gift"></span>ㅤOrder Information</h2>
-        <div style="margin-bottom:13px;margin-top:13px">
-          <form>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <div class="input-group-btn">
-                <button class="btn btn-default" type="submit">
-                  <i class="glyphicon glyphicon-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-
-
-      <div class="well" style="background-color:white">
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Order ID</th>
-              <th style="text-align:center">Order Date</th>
-              <th style="text-align:center">Customer ID</th>
-              <th style="text-align:center">Item ID</th>
-              <th style="text-align:center">Item Type</th>
-              <th style="text-align:center">Quantity</th>
-              <th style="text-align:center">Order Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <form>
-                  <input type="checkbox">
-                </form>
-              </td>
-              <td>23123</td>
-              <td>mmm-dd-yyyy</td>
-              <td>88</td>
-              <td>34234</td>
-              <td>Women</td>
-              <td>9</td>
-              <td>
-                <form>
-                  <select class="form-control"  style="width:150px; height:30px;font-size:12px;margin:auto">
-                    <option>Waiting</option>
-                    <option>In Process</option>
-                    <option>Delivery</option>
-                  </select>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <form>
-                  <input type="checkbox">
-                </form>
-              </td>
-              <td>23123</td>
-              <td>mmm-dd-yyyy</td>
-              <td>88</td>
-              <td>34234</td>
-              <td>Women</td>
-              <td>9</td>
-              <td>
-                <form>
-                  <select class="form-control"  style="width:150px; height:30px;font-size:12px;margin:auto">
-                    <option>Customer Ordered</option>
-                    <option>In Process</option>
-                    <option>Delivered</option>
-                    <option>Arrived</option>
-                  </select>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <form>
-                  <input type="checkbox">
-                </form>
-              </td>
-              <td>23123</td>
-              <td>mmm-dd-yyyy</td>
-              <td>88</td>
-              <td>34234</td>
-              <td>Women</td>
-              <td>9</td>
-              <td>
-                <form>
-                  <select class="form-control"  style="width:150px; height:30px;font-size:12px;margin:auto">
-                    <option>Waiting</option>
-                    <option>In Process</option>
-                    <option>Delivery</option>
-                  </select>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Number of Order: 99<p>
-      </div>
-
-      <div style="text-align:center;">
-        <button style="width:80px" class="btn btn-md btn-primary" type="submit" >SAVE</button>
-      </div>
-    </div>
-    <br><br>
-  </div>
-  
-  -->
     <div class="container">
     <div class="jumbotron">
       <div>
@@ -202,18 +86,10 @@
 
 
 <% 
-	Connection connection = ConnectionFactory.getConnection();
-	ResultSet rs = null;
-	PreparedStatement pst = null;
-	Statement st = connection.createStatement();
 	int totalOrder = 0;
-	
-	rs = st.executeQuery("Select * from Orders");
 	double netPrice =0;
-	ArrayList<Order> orderList = new ArrayList<Order>();
-	while(rs.next()){
-		orderList.add(new Order (rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
-	}
+
+
 %>
 	 <form method ="POST" action = "ShoppingController">
       <div class="well" style="background-color:white">
@@ -230,10 +106,14 @@
             </tr>
           </thead>
           <tbody>
-            <% 
-          for(int i =0; i < orderList.size(); i++  ){  
-        	  String status = orderList.get(i).getStatus();
-        	  totalOrder += orderList.get(i).getQuantity();
+           <% 
+        	Order order = new Order();
+        	ArrayList<Order>orderList = order.getOderList();
+
+            
+         	for(int i =0; i < orderList.size(); i++  ){  
+        	  	String status = orderList.get(i).getStatus();
+        	 	 totalOrder += orderList.get(i).getQuantity();
  				%>           
             <tr>
            <!-- <td> <input type="checkbox" name="order" value = <%=orderList.get(i).getOrderId()%> ></td> -->
@@ -249,7 +129,7 @@
               <td><%=orderList.get(i).getQuantity()%> </td>
               <!-- Order Status -->
               <td>
-                  <select name = "status<%=orderList.get(i).getOrderId()%>"  class="form-control"  style="width:150px; height:30px;font-size:12px;margin:auto">
+                  <select name = "status"  class="form-control"  style="width:150px; height:30px;font-size:12px;margin:auto">
                     <% if(status.equals("Order-Place")){ %>
                     	<option value='Order-Place' selected>  Customer Ordered</option>
                     <% }else {%>
@@ -268,9 +148,11 @@
                    		<option value = "Completed">Arrived</option>
                    	<%}%>
                   </select>
+        
               </td>
             </tr>
-            <%} %>
+            <%}
+          	order = null;%>
 
           </tbody>
         </table>
@@ -282,16 +164,10 @@
         <button style="width:80px" class="btn btn-md btn-primary" type="submit" name= "action" value="editOrder">SAVE</button>
       </div>
       </form>
-      
     </div>   
     <br><br>
   </div>
   
-  
-
-
-
-
 <footer class="container-fluid text-center">
   <p>Park, Min Jung  (991495289) & Doan, Ngoc Phuong Thao (991466176)</p>
   <p>Assignment 3 of PROG32758 Enterprise Java Development @ Sheridan College</p>
