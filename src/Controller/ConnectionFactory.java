@@ -12,7 +12,7 @@ public class ConnectionFactory {
 	    private static final String user="root";
 	    private static final String password="root";
 
-	    private ConnectionFactory() {
+	    private ConnectionFactory() throws InstantiationException, IllegalAccessException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
@@ -27,7 +27,7 @@ public class ConnectionFactory {
 	    public static Connection getConnection() throws Exception{
 	    	Connection connection = null;
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				connection = DriverManager.getConnection(url, user, password);
 				System.out.println(connection);
 				
