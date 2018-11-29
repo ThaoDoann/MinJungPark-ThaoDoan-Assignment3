@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="java.sql.*, Controller.ConnectionFactory, Model.Customer"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,8 @@
     }
   </style>
 </head>
+
+
 <body>
 
   <div class="jumbotron">
@@ -66,15 +68,36 @@
     </div>
   </nav>
 
+	<% 
+	
+		String userName = request.getParameter("userName");
+	
+		Connection con = null;
+		PreparedStatement pst;
+		ResultSet rs = null;
+		Statement st;
+		
+		con = ConnectionFactory.getConnection();
+		String query = "select userName from customers where username = ?";
+		pst = con.prepareStatement(query);
+		pst.setString(1, userName);
+		
+		rs = pst.executeQuery();
+		// Test by MJ
+		
+		
+	
+	%>
   <div class="container" >
     <div class="jumbotron">
-      <form class="form-signin" action="Controller" Method= "POST">
-        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-edit"></span>ㅤCustomer Registration</h2><br>
+      <form class="form-signin" action="CustomerController" Method= "POST">
+        <h2 class="form-signin-heading"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Customer Registration</h2><br>
         <h5>Please fill in this form to create an account.</h5>
         <!-- username -->
-        <div class="input-group" style="margin-bottom:6px">
+        <div class="input-group" style="margin-bottom:6px;">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input type="text" class="form-control" name="regUser" placeholder="User Name" required><br>
+          <input type="text" class="form-control" name="regUser" placeholder="User Name" style="width: 80%" id="userName" required >
+          <button class="btn btn-sm btn-default" id="validationBtn" type="button" style="float:right; width:19%; height:34px" onclick="checkUsernameValidation()">CHECK VALIDATION</button>
         </div>
         <!-- password -->
         <div class="input-group" style="margin-bottom:6px">
@@ -110,7 +133,7 @@
         <div style="text-align:center">
           By creating an account you agree to our <a href="https://policies.google.com/terms?hl=en&gl=ZZ">Terms & Privacy</a>.<br><br>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value = "SignUp">SIGN UP</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value = "SignUp" id="signupBtn" disabled>SIGN UP</button>
         <div style="text-align:center">
           Already have an account? <a href="SignUp.jsp"> Click here to sign in!</a>
         </div>
@@ -129,7 +152,20 @@
   <p>Assignment 3 of PROG32758 Enterprise Java Development @ Sheridan College</p>
 
 </footer>
+<script>
+  var validationButton = document.getElementById("validationBtn");
+  function checkUsernameValidation () {
+    if (true) {
+      validationButton.innerHTML="Validated";
+      validationButton.style.color="green"
+      document.getElementById("signupBtn").disabled = false;
+    }
+    else {
+      validationButton.innerHTML="Invalidated. Try Again";
+      validationButton.style.color="red"
+    }
+  }
+</script>
 
 </body>
 </html>
-
