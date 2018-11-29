@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"
     import  = "java.sql.*, Controller.ConnectionFactory, java.util.*, Model.Order, Model.Shoe" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
-   %>
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,23 +185,18 @@
          <% 
           for(int i =0; i < orderList.size(); i++  ){  
 	          rs = st.executeQuery("Select * from Shoes where itemId = "+orderList.get(i).getItemId());	
-				if (rs.next()){
-					Shoe itemOrdered = new Shoe(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5));	
-						%>
+			  if (rs.next()){
+					Shoe itemOrdered = new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+							rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8));	
+ 		%>
         	  <tr>
               <td>
-                  <input type="checkbox" name = "order" value = <%=orderList.get(i).getOrderId() %>>
+                  <input type="checkbox" name = "order" value = <%=orderList.get(i).getOrderId()%>>
               </td>
-              <td><% 
-              out.println(itemOrdered.getItemName());
-               %></td>
+              <td><%   out.println(itemOrdered.getItemName()); %></td>
               <td><% out.println(itemOrdered.getCategory()); %></td>
               <td>
                   <select class="form-control"  style="width:80px; height:27px;font-size:13px;margin:auto">
-                  	<% 
-                  //	ResultSet rs1 = connection.createStatement().executeQuery("Select shoeSize from Shoes where itemName = "+itemOrdered.getItemName()+"  And category ="+itemOrdered.getCategory());
-                  	//	System.out.println(rs1);
-                  	%>
                     <option>7</option>
                     <option>7.5</option>
                     <option>8</option>
@@ -210,9 +205,7 @@
               </td>
               <td>$<%=itemOrdered.getPrice()%></td>
               <td>
-              	
-                  <input type="number" class="form-control" min="1" max="10" step="1" value= '<% out.println(orderList.get(i).getQuantity()); %>'style="width:80px; height:25px;margin:auto">
-
+                  <input type="number" class="form-control" name = "itemOrderedQty" value=<%=orderList.get(i).getQuantity()%>  style="width:80px; height:25px;margin:auto">
               </td>
               <td>13%</td>
               <td><%
@@ -221,17 +214,13 @@
 		            String totalAmount = String.format ("$%.2f",total);
 	              	out.println(totalAmount); %></td>
             </tr>
-        		
+ 		
          <% } }%> 
           
-            
-			
-
-
           </tbody>
         </table>
         <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Net Price: $<%=netPrice %></p>
+        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Net Price: $<% out.println(String.format("%.2f",netPrice)); %></p>
       </div>
       
       

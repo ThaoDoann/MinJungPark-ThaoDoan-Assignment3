@@ -190,7 +190,8 @@
 	
 	ArrayList<Shoe> manShoeList = new ArrayList<Shoe>();
 	while(rs.next()){
-		manShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5)));
+		manShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+				rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
 	}
 	request.setAttribute("manShoeList", manShoeList);
 %>
@@ -201,10 +202,11 @@
 		<div class="col-sm-4">
 	        <div class="panel panel-default">
 	          <div class="panel-heading" style="text-align:center;font-weight: bold">${shoe.itemName}</div>
-	          <div class="panel-body"><img src="images\Men_Shoes\01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
+	          <div class="panel-body"><img src="${shoe.image}" class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
 	          <div class="panel-footer">
-	            Sole: Rubber<br>
-	            Meterial: Leather<br>
+	            <div class = "itemDescription">
+	            	${shoe.description}
+	            </div>
 	            Price <b>$${shoe.price}</b><br><br>
 	            <div class="container">
 		            <select name = "WomanShoeSize">

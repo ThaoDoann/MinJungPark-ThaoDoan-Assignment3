@@ -192,7 +192,8 @@
 	
 	ArrayList<Shoe> womanShoeList = new ArrayList<Shoe>();
 	while(rs.next()){
-		womanShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5)));
+		womanShoeList.add(new Shoe (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), 
+				rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
 	}
 	request.setAttribute("womanShoeList", womanShoeList);
 %>
@@ -202,11 +203,12 @@
 		<c:forEach var = "shoe"  items="${womanShoeList}">
 		<div class="col-sm-4">
 	        <div class="panel panel-default">
-	          <div class="panel-heading" style="text-align:center;font-weight: bold">${shoe.itemName} ${shoe.itemId}</div>
-	          <div class="panel-body"><img src=".\images\Women_Shoes\01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
+	          <div class="panel-heading" style="text-align:center;font-weight: bold">${shoe.itemName}</div>
+	          <div class="panel-body"><img src="${shoe.image}" class="img-responsive" style="height:180pt;margin:auto" alt="Image"></div>
 	          <div class="panel-footer">
-	            Heel measures: 10mm/ 0.4 inch<br>
-	            Italian blush pink suede<br>
+	            <div class = "itemDescription">
+	            	${shoe.description}
+	            </div>
 	            Price <b>$${shoe.price}</b><br><br>
 	            <div class="container">
 				  <select name = "WomanShoeSize">
