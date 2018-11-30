@@ -62,7 +62,7 @@
     </div>
   </nav>
 
-<form action = "ProductController" method ="POST">
+<form action = "testController" method ="POST">
   <div class="container" >
     <div class="jumbotron">
         <h2 class="form-signin-heading"><span class="glyphicon glyphicon-pencil">    </span>   New Item</h2><br>
@@ -105,13 +105,14 @@
         </div><br><br>
         
         <div class="panel-body" style="text-align:center;" >
-        	<img id = "imageFile" src="images/Women_Shoes/01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image" name ="addImage" ><br>
+        	<img id = "imageFile" src="images/No_Image/no-image.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image" name ="addImage" ><br>
         	<input  id ="myFile" style=" margin:auto" type="file" accept="image/png, image/jpeg" name ="imagePath" value = "" onchange="myFunction()" >
         </div>
         
         <br><br>
          <div style="text-align:center;"> 
-         	<button class="btn btn-md btn-primary" type="submit" name="action" value="addItem"  style="width:140px">ADD</button>
+         	<input class="btn btn-md btn-primary" type="submit" name="action" value="ADD"  style="width:140px" >
+         	<button class="btn btn-md btn-primary" type="submit" name="action" value="addProduct"  style="width:140px">ADD</button>
          	<button class="btn btn-md btn-primary" type="button" onclick="window.location='CSR_Product.jsp'" style="width:140px">CANCEL</button>
         </div>
       

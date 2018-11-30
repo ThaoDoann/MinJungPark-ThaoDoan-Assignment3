@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
 import Model.Shoe;
 /**
  * Servlet implementation class ProductController
@@ -39,10 +38,15 @@ public class ProductController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+//			RequestDispatcher rd=request.getRequestDispatcher("CSR_Product.jsp");  
+//			rd.forward(request, response);
+			System.out.println("ddddddddddd");
 			session = request.getSession();
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
+			
 			String action = request.getParameter("action");
+			
 			System.out.println("action = "+ action);
 			if("addProduct".equals(action)) {
 				addProduct(request, response);
@@ -59,7 +63,30 @@ public class ProductController extends HttpServlet {
 	}
 	public void addProduct (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
-			RequestDispatcher rd=request.getRequestDispatcher("CSR_addProduct.jsp");  
+			con = ConnectionFactory.getConnection();
+			String itemName = request.getParameter("addItemName");
+			String category = request.getParameter("addCategory");
+			int shoeSize = Integer.parseInt(request.getParameter("addItemSize"));
+			double price = Double.parseDouble(request.getParameter("addPrice"));
+			int quantity = Integer.parseInt(request.getParameter("addQty"));
+			String imgPath = request.getParameter("imagePath");
+			System.out.println(imgPath);
+			String description = request.getParameter("addDescription");
+			
+			pst = con.prepareStatement("insert into Shoes (itemName, category, shoeSize, price, quantity, image, description) "
+					+ "values (?, ?, ?, ?, ?,?, ?)");
+			pst.setString(1,itemName );
+			pst.setString(2, category);
+			pst.setInt(3, shoeSize);
+			pst.setDouble(4, price);
+			pst.setInt(5, quantity);
+		//	pst.setString(6, "images/"+imgPath);
+			pst.setString(6, "images/Women_Shoes/05-01.png");
+			pst.setString(7, description);
+
+			int newItem = pst.executeUpdate();
+
+			RequestDispatcher rd=request.getRequestDispatcher("CSR_Product.jsp");  
 			rd.forward(request, response);
 			
 		}
@@ -136,41 +163,6 @@ public class ProductController extends HttpServlet {
 	}
 	
 	
-	public void addItem (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-			con = ConnectionFactory.getConnection();
-			String itemName = request.getParameter("addItemName");
-			String category = request.getParameter("addCategory");
-			int shoeSize = Integer.parseInt(request.getParameter("addItemSize"));
-			double price = Double.parseDouble(request.getParameter("addPrice"));
-			int quantity = Integer.parseInt(request.getParameter("addQty"));
-			String imgPath = request.getParameter("imagePath");
-			System.out.println(imgPath);
-			String description = request.getParameter("addDescription");
-			
-			pst = con.prepareStatement("insert into Shoes (itemName, category, shoeSize, price, quantity, image, description) "
-					+ "values (?, ?, ?, ?, ?,?, ?)");
-			pst.setString(1,itemName );
-			pst.setString(2, category);
-			pst.setInt(3, shoeSize);
-			pst.setDouble(4, price);
-			pst.setInt(5, quantity);
-		//	pst.setString(6, "images/"+imgPath);
-			pst.setString(6, "images/Women_Shoes/05-01.png");
-			pst.setString(7, description);
-
-			int newItem = pst.executeUpdate();
-
-			RequestDispatcher rd=request.getRequestDispatcher("CSR_Product.jsp");  
-			rd.forward(request, response);
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			ConnectionFactory.closeConnection(con, pst, null);
-		}
-	}
 	
 	/*
 	 * To check if the itemId is available in the Order table

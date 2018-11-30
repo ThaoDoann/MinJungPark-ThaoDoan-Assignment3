@@ -147,7 +147,7 @@
           </tbody>
         </table>
         <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Price : $<%=String.format("%.2f",totalPrice)%> / Total Stock Qty: <%=totalQty %></p>
+        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Price : $<% out.println(String.format("%.2f",totalPrice)); %> / Total Stock Qty: <% out.println(totalQty); %></p>
       </div>
       <% } %>
       
@@ -155,7 +155,7 @@
  
       
       <div style="text-align:center;">
-        <button style="width:80px" class="btn btn-md btn-primary" type="submit" name="action" value ="addProduct">ADD  </button>  
+        <button style="width:80px" class="btn btn-md btn-primary" type="button" onclick="window.location='CSR_addProduct.jsp'">ADD  </button>  
         <button style="width:80px" class="btn btn-md btn-primary" type="submit" name="action" value ="editProduct">EDIT  </button>  
         <button style="width:80Px" class="btn btn-md btn-primary" type="submit" name="action" value ="deleteProduct">DELETE  </button>  
       </div>
