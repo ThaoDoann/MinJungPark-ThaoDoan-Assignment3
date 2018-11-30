@@ -65,156 +65,6 @@
     </div>
   </nav>
 
-<!-- 
-  <div class="container">
-    <div class="jumbotron">
-
-      <h2><span class="glyphicon glyphicon-tags"></span>ㅤProduct Information</h2>
-      <div style="margin-bottom:13px; margin-top:13px">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-search"></i>
-              </button>
-            </div>
-          </div>
-      </div>
-      
-      <form action= "ProductController" action = "POST"> 
-      <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Women Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            
-            
-            <tr>
-              <td> <input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div>
-      <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Men Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            <tr>
-              <td>
-                  <input type="checkbox">
-              </td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div>
-      <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Kid Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Emma</td>
-              <td>7</td>
-              <td>$10.00</td>
-              <td>99</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div>
-      <div style="text-align:center;">
-        <button style="width:80px" class="btn btn-md btn-primary" type="submit" >ADD</button>ㅤ
-        <button style="width:80px" class="btn btn-md btn-primary" type="submit" >EDIT</button>ㅤ
-        <button style="width:80Px" class="btn btn-md btn-primary" type="submit">DELETE</button>
-      </div>
-     </form>
-    </div>
-    <br><br>
-  </div>
- -->
    <div class="container">
     <div class="jumbotron">
 
@@ -250,99 +100,23 @@
 								rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8)));
 		}
 	}
-
-	
 %>
       
       
       <form action= "ProductController" action = "POST"> 
-   <!--   <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Women Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-          <c:forEach var = "womanShoe" items="${womanShoeList}">
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>${womanShoe.itemName}</td>
-              <td>${womanShoe.shoeSize}</td>
-              <td>$${womanShoe.price}</td>
-              <td>${womanShoe.quantity}</td>
-            </tr>
-           </c:forEach>
-            
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div>
+      <% 	String denyMsg = request.getParameter("denyMsg");
+      		if(denyMsg != null) {
+      			out.println("<h3 style = 'color: red'>" + denyMsg + "</h3> ");
+      		} %>
+      <h3></h3>
+  
       
-      <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Men Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-          <c:forEach var = "manShoe" items="${manShoeList}">
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>${manShoe.itemName}</td>
-              <td>${manShoe.shoeSize}</td>
-              <td>$${manShoe.price}</td>
-              <td>${manShoe.quantity}</td>
-            </tr>
-      	   </c:forEach>
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div>
-      
-      <div class="well" style="background-color:white">
-        <p style="color:Grey"><b>Kid Shoes</b></p>
-        <table class="table table-hover" style="text-align:center">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="text-align:center">Item Name</th>
-              <th style="text-align:center">Size</th>
-              <th style="text-align:center">Unit Price</th>
-              <th style="text-align:center">Stock Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-           <c:forEach var = "kidShoe" items="${kidShoeList}">
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>${kidShoe.itemName}</td>
-              <td>${kidShoe.shoeSize}</td>
-              <td>$${kidShoe.price}</td>
-              <td>${kidShoe.quantity}</td>
-            </tr>
-            </c:forEach>
+     <%
+     for(int j=0; j< category.length; j++ ){
+    	 double totalPrice = 0;
+    	 int totalQty =0;
+     %>
 
-          </tbody>
-        </table>
-        <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Unit Price : $999.99 / Total Stock Qty: 999</p>
-      </div> -->
-      
-     <% for(int j=0; j< category.length; j++ ){ %>
        <div class="well" style="background-color:white">
         <p style="color:Grey"><b><%=category[j]%> Shoes</b></p>
         <table class="table table-hover" style="text-align:center">
@@ -356,9 +130,12 @@
             </tr>
           </thead>
           <tbody>
-         <%for (int i= 0; i< shoeList[j].size(); i++){ %>
+         <%for (int i= 0; i< shoeList[j].size(); i++){ 
+        	 totalPrice += shoeList[j].get(i).getPrice()  ;
+        	 totalQty += shoeList[j].get(i).getQuantity() ;
+         %>
             <tr>
-              <td><input type="checkbox" name = "product" ></td>
+              <td><input type="checkbox" name = "product" value="<%=shoeList[j].get(i).getItemId()%>"></td>
               <td><%=shoeList[j].get(i).getItemName()%></td>
               <td><%=shoeList[j].get(i).getShoeSize()%></td>
               <td><%=shoeList[j].get(i).getPrice()%></td>
@@ -370,7 +147,7 @@
           </tbody>
         </table>
         <hr style="border:solid 1px lightGray">
-        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Price : $999.99 / Total Stock Qty: 999</p>
+        <p style="text-align:right; margin-right:20px;font-size:16px;font-weight:bold">Total Price : $<%=String.format("%.2f",totalPrice)%> / Total Stock Qty: <%=totalQty %></p>
       </div>
       <% } %>
       

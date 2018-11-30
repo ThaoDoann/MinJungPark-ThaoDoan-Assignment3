@@ -75,7 +75,7 @@
         <!-- category -->
         <div class="input-group" style="margin-bottom:6px">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <select class="form-control"  name="addCategory" required>
+          <select id="category" class="form-control"  name="addCategory" required>
 			  <option value="" disabled >Category</option>
 			  <option value="Kid">Kid</option>
 			  <option value="Woman">Woman</option>
@@ -101,25 +101,41 @@
         <div class="input-group" style="margin-bottom:6px;  float:left">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
           <input type="text"  name="addDescription" class="form-control"  placeholder="Description" required><br>
+  
         </div><br><br>
         
-        <div class="panel-body">
-        	<img src="images/Women_Shoes/01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image" name ="addImage" >
-        	<button class="btn btn-md btn-primary" type="submit" name ="action" value="addItemImg"  style="width:140px">Add Item Image</button>
+        <div class="panel-body" style="text-align:center;" >
+        	<img id = "imageFile" src="images/Women_Shoes/01-01.png" class="img-responsive" style="height:180pt;margin:auto" alt="Image" name ="addImage" ><br>
+        	<input  id ="myFile" style=" margin:auto" type="file" accept="image/png, image/jpeg" name ="imagePath" value = "" onchange="myFunction()" >
         </div>
         
-        <br><br><br><br>
+        <br><br>
          <div style="text-align:center;"> 
-         	<button class="btn btn-md btn-primary" type="submit" name='action' value="addItem"  style="width:140px">ADD</button>
-         	<button class="btn btn-md btn-primary" type="submit" name ="action" value="cancelAdd"  style="width:140px">CANCEL</button>
+         	<button class="btn btn-md btn-primary" type="submit" name="action" value="addItem"  style="width:140px">ADD</button>
+         	<button class="btn btn-md btn-primary" type="button" onclick="window.location='CSR_Product.jsp'" style="width:140px">CANCEL</button>
         </div>
       
     </div>
   </div>
 
   </form>
+<script>
+function myFunction() {
+        var x = document.getElementById("myFile").value;
+        x = x.replace(/.*[\/\\]/, '');
+        var category = document.getElementById("category").value;
+    	if(category === "Kid"){
+        	category = "images/Kid_Shoes";
+        } else if (category === "Woman"){
+        	category = "images/Women_Shoes";
+        }else if (category === "Man"){
+        	category = "images/Men_Shoes";
+        }
 
-
+        document.getElementById("imageFile").src =  category+"/"+x;
+        document.getElementById("myFile").setAttribute("value", (category+"/"+x));
+}
+</script>
 
 <footer class="container-fluid text-center">
   <p>Park, Min Jung  (991495289) & Doan, Ngoc Phuong Thao (991466176)</p>

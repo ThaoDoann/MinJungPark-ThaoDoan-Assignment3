@@ -29,7 +29,6 @@ public class ConnectionFactory {
 			try {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				connection = DriverManager.getConnection(url, user, password);
-				System.out.println(connection);
 				
 			} catch (SQLException e) {
 				System.out.println("ERROR: Connection Failed "+e.getMessage());
